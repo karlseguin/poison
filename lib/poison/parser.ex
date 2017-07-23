@@ -17,7 +17,10 @@ defmodule Poison.ParseError do
   end
 
   defp escape(token) do
-    Inspect.BitString.escape(<<token>>, ?\\)
+    case Inspect.BitString.escape(<<token>>, ?\\) do
+      {escaped, _} -> escaped
+      escaped -> escaped
+    end
   end
 end
 
